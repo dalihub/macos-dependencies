@@ -1,0 +1,51 @@
+#!/bin/bash
+Usage()
+{
+  echo "Usage: ./create-setenv [OPTIONS] > setenv"
+  echo
+  echo " Options:"
+  echo "    -d|--debug  Adds the debug library paths to the environment as well"
+  echo
+  echo "NOTE: The following environment variables have to be set:"
+  echo "  VCPKG_FOLDER     This is the absolute path to the vcpkg installation"
+  echo "  DESKTOP_PREFIX   This is where you want DALi libraries to be installed, i.e the dali-env directory"
+  exit $1
+}
+
+if [[ "$1" = "-h" ]] || [[ "$1" = "--help" ]]
+then
+  Usage 0
+fi
+
+ENV_VARS="
+  VCPKG_FOLDER
+  DESKTOP_PREFIX
+"
+
+for envVar in $ENV_VARS
+do
+  eval "if [ -z \$$envVar ]; then echo \"ERROR: $envVar not set\"; envError=1;fi"
+done
+[[ $envError -eq 1 ]] && Usage 1
+
+echo "export DESKTOP_PREFIX=\"$DESKTOP_PREFIX\""
+echo "export VCPKG_FOLDER=\"$VCPKG_FOLDER\""
+echo "export DYLD_LIBRARY_PATH=\"\${DYLD_LIBRARY_PATH}:\${VCPKG_FOLDER}/vcpkg/installed/x64-osx/lib\""
+echo "export DYLD_LIBRARY_PATH=\"\${DYLD_LIBRARY_PATH}:\${DESKTOP_PREFIX}/lib/\""
+echo "export DALI_APPLICATION_PACKAGE=\"\${DESKTOP_PREFIX}/share/com.samsung.dali-demo/res/\""
+echo "export DALI_WINDOW_WIDTH=\"480\""
+echo "export DALI_WINDOW_HEIGHT=\"800\""
+echo "export DALI_IMAGE_DIR=\"\${DESKTOP_PREFIX}/share/dali/toolkit/images/\""
+echo "export DALI_SOUND_DIR=\"\${DESKTOP_PREFIX}/share/dali/toolkit/sounds/\""
+echo "export DALI_STYLE_DIR=\"\${DESKTOP_PREFIX}/share/dali/toolkit/styles/\""
+echo "export DALI_STYLE_IMAGE_DIR=\"\${DESKTOP_PREFIX}/share/dali/toolkit/styles/images/\""
+echo "export DALI_DATA_READ_ONLY_DIR=\"\${DESKTOP_PREFIX}/share/dali/\""
+echo "export PATH=\${DESKTOP_PREFIX}/bin:\$PATH"
+echo "export PKG_CONFIG_PATH=\${DESKTOP_PREFIX}/lib/pkgconfig:\${PKG_CONFIG_PATH}"
+echo "export FONTCONFIG_FILE=\${VCPKG_FOLDER}/installed/x64-osx/etc/fonts/fonts.conf"
+
+if [[ "$1" = "-d" ]] || [[ "$1" = "--debug" ]]
+then
+  echo "export DYLD_LIBRARY_PATH=\"\${DYLD_LIBRARY_PATH}:\${VCPKG_FOLDER}/installed/x64-osx/debug/lib\""
+  echo "export DYLD_LIBRARY_PATH=\"\${DYLD_LIBRARY_PATH}:\${DESKTOP_PREFIX}/lib/debug\""
+fi

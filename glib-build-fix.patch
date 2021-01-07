@@ -1,0 +1,12 @@
+diff --git a/ports/glib/CMakeLists.txt b/ports/glib/CMakeLists.txt
+index b0ee220aa..561820d7f 100644
+--- a/ports/glib/CMakeLists.txt
++++ b/ports/glib/CMakeLists.txt
+@@ -19,6 +19,7 @@ if(BUILD_SHARED_LIBS)
+ endif()
+ 
+ set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
++set(ENV{SDKROOT} ${CMAKE_OSX_SYSROOT})
+ 
+ # find dependencies
+ 
