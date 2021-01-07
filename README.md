@@ -42,7 +42,7 @@ It is recommended that the commit listed below is obtained as this has been test
  % git reset --hard 9ddc9173d7858ddb40b2fc0cdc73b529c390ba47
 ```
 
-At the time of writing, there are certain issues with angle_¹_, fontconfig_²_ & glib_³_ in vcpkg & DALi.
+At the time of writing, there are certain issues with `angle`_¹_, `fontconfig`_²_ & `glib`_³_ in vcpkg.
 ```zsh
  % ln -sf /Library/Fonts/ ~/.fonts
  % cd /path/to/vcpkg
@@ -63,7 +63,7 @@ To set up vcpkg, run the following command:
 And through `vcpkg` install:
  - `angle`
  - `bzip2`
- - `cairo
+ - `cairo`
  - `curl`
  - `dirent`
  - `egl-registry`
