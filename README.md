@@ -88,7 +88,7 @@ And through `vcpkg` install:
 
 _¹_: DALi requires a more recent version of the angle library to render.
 
-_²_: Fontconfig does not parse the system fonts so the easiest thing to do is to just create a symbolic link in your home directory as shwon.
+_²_: Fontconfig does not parse the system fonts so the easiest thing to do is to just create a symbolic link in your home directory as shown.
      Additionally, FONTCONFIG_FILE needs to be set but that's done when we generate the setenv (see later).
 
 _³_: A reported bug where glib does not build out of the box on macOS.
