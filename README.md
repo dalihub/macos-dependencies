@@ -49,11 +49,6 @@ At the time of writing, there are certain issues with `angle`_¹_, `fontconfig`_
  % for patch in /path/to/macos-dependencies/*.patch; do patch -p1 -l -i $patch; done
 ```
 
-_¹_: DALi requires a more recent version of the angle library to render.
-_²_: Fontconfig does not parse the system fonts so the easiest thing to do is to just create a symbolic link in your home directory as shwon.
-     Additionally, FONTCONFIG_FILE needs to be set but that's done when we generate the setenv (see later).
-_³_: A reported bug where glib does not build out of the box on macOS.
-
 To set up vcpkg, run the following command:
 ```zsh
  % cd /path/to/vcpkg
@@ -92,7 +87,14 @@ And through `vcpkg` install:
  % ./vcpkg install angle bzip2 cairo curl dirent egl-registry expat fontconfig fribidi getopt gettext giflib glib harfbuzz libexif libffi libiconv libjpeg-turbo libpng libwebp opengl pcre pixman pthreads ragel tool-meson zlib
 ```
 
-# Setting the DALi Environment
+_¹_: DALi requires a more recent version of the angle library to render.
+
+_²_: Fontconfig does not parse the system fonts so the easiest thing to do is to just create a symbolic link in your home directory as shwon.
+     Additionally, FONTCONFIG_FILE needs to be set but that's done when we generate the setenv (see later).
+
+_³_: A reported bug where glib does not build out of the box on macOS.
+
+# DALi Environment Setup
 Now you need to create a `dali-env` folder and then set some environment variables.
 First of all:
 - `VCPKG_FOLDER` should contain the absolute path to your `vcpkg` installation
