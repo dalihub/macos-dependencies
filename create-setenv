@@ -30,7 +30,7 @@ done
 
 echo "export DESKTOP_PREFIX=\"$DESKTOP_PREFIX\""
 echo "export VCPKG_FOLDER=\"$VCPKG_FOLDER\""
-echo "export DYLD_LIBRARY_PATH=\"\${DYLD_LIBRARY_PATH}:\${VCPKG_FOLDER}/vcpkg/installed/x64-osx/lib\""
+echo "export DYLD_LIBRARY_PATH=\"\${DYLD_LIBRARY_PATH}:\${VCPKG_FOLDER}/installed/x64-osx/lib\""
 echo "export DYLD_LIBRARY_PATH=\"\${DYLD_LIBRARY_PATH}:\${DESKTOP_PREFIX}/lib/\""
 echo "export DALI_APPLICATION_PACKAGE=\"\${DESKTOP_PREFIX}/share/com.samsung.dali-demo/res/\""
 echo "export DALI_WINDOW_WIDTH=\"480\""
