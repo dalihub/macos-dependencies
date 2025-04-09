@@ -11,6 +11,9 @@ Instructions on how to set up the DALi environment on macOS.
 
 # Dependencies
 
+## Proxy
+Set ```ALL_PROXY``` appropriately if you are behind a proxy server before running the following commands.
+
 ## Homebrew
 
 Refer to the [homebrew](https://docs.brew.sh/Installation.html) website for the macOS requirements for Homebrew.
