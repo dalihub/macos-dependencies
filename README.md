@@ -38,18 +38,11 @@ From `homebrew` install:
 
 Refer to the [vcpkg](https://github.com/Microsoft/vcpkg#quick-start-unix) website for the prerequisites for macOS for vcpkg.
 
-It is recommended that the commit listed below is obtained as this has been tested:
+It is recommended that the commit listed below is obtained as this has been tested but you can try with the latest:
 ```zsh
 % git clone https://github.com/microsoft/vcpkg
 % cd vcpkg
-% git reset --hard 9ddc9173d7858ddb40b2fc0cdc73b529c390ba47
-```
-
-At the time of writing, there are certain issues with `angle`_¹_, `fontconfig`_²_ & `glib`_³_ in vcpkg. To fix these run:
-```zsh
-% ln -sf /Library/Fonts/ ~/.fonts
-% cd /path/to/vcpkg
-% for patch in /path/to/macos-dependencies/*.patch; do patch -p1 -l -i $patch; done
+% git reset --hard 8a48867e546b27969f7e1f4a81dcbeecfb4114b9 
 ```
 
 To set up vcpkg, run the following command:
@@ -83,18 +76,16 @@ And through `vcpkg` install:
  - `pixman`
  - `pthreads`
  - `ragel`
- - `tool-meson`
  - `zlib`
 ```zsh
-% ./vcpkg install angle bzip2 cairo curl dirent egl-registry expat fontconfig fribidi getopt gettext giflib glib harfbuzz libexif libffi libiconv libjpeg-turbo libpng libwebp opengl pcre pixman pthreads ragel tool-meson zlib
+% ./vcpkg install angle bzip2 cairo curl dirent egl-registry expat fontconfig fribidi getopt gettext giflib glib harfbuzz libexif libffi libiconv libjpeg-turbo libpng libwebp opengl pcre pixman pthreads ragel zlib
 ```
 
-_¹_: DALi requires a more recent version of the angle library to render.
-
-_²_: Fontconfig does not parse the system fonts so the easiest thing to do is to just create a symbolic link in your home directory as shown.
+At the time of writing, Fontconfig does not parse the system fonts so the easiest thing to do is to just create a symbolic link in your home directory as shown below.
      Additionally, FONTCONFIG_FILE needs to be set but that's done when we generate the setenv (see later).
-
-_³_: A reported bug where glib does not build out of the box on macOS.
+```zsh
+% ln -sf /Library/Fonts/ ~/.fonts
+```
 
 # DALi Environment Setup
 Now you need to create a `dali-env` folder and then set some environment variables.
